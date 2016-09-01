@@ -2,23 +2,149 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>じゃんけん</title>
         <style>
             /* CSSによる装飾はここに書きます */
-            p { color: #ff0000; }
+            .コマンド {
+	            background-image: url('./images/command.png');
+	            width: 200px;
+	            height: 200px;
+	            margin: 10px auto;
+            }
+            
+            .カウンター {
+	            text-align: center;
+	            padding: 0;
+            }
+            
+            .カウンター li {
+	            display: inline-block;
+	            background: url('./images/counter.png');
+	            width: 40px;
+	            height: 40px;
+	            margin: 10px;
+            }
         </style>
     </head>
     <body>
         <!-- ブラウザに表示するHTMLタグはここに追加していきます -->
-        <p>
-            HTMLのひな形（テンプレート）です。
-        </p>
+        <div id="コンピュータ" class="コマンド">
+            相手
+        </div>
+        
+		<ul class="カウンター">
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		
+        <div id="プレーヤー" class="コマンド">
+            自分
+        </div>
+        <input type="button" value="グー" id="グー">
+		<input type="button" value="チョキ" id="チョキ">
+		<input type="button" value="パー" id="パー">
         
         <script type="text/javascript">
             /* JavaScriptによるプログラミング（HTMLの操作）はここに書きます */
-            setTimeout(function() {
-                alert('こんにちは');
-            }, 1000);
+            
+            var n回戦目 = 0;
+            var 勝ちカウント = 0;
+            var コマンド配列 = ['gu', 'ch', 'pa'];
+            
+            var グー = document.querySelector('#グー');
+            var チョキ = document.querySelector('#チョキ');
+            var パー = document.querySelector('#パー');
+            var プレーヤー = document.querySelector('#プレーヤー');
+            var コンピュータ = document.querySelector('#コンピュータ');
+            var カウンター = document.querySelectorAll('.カウンター li');
+            
+            グー.addEventListener('click', function(e){
+                選ぶ(0);
+            });
+            
+            チョキ.addEventListener('click', function(e){
+                選ぶ(1);
+            });
+            
+            パー.addEventListener('click', function(e){
+                選ぶ(2);
+            });
+            
+            function 初期化() {
+                n回戦目 = 0;
+                勝ちカウント = 0;
+                プレーヤー.style.backgroundImage = 'url(./images/command.png)';
+                コンピュータ.style.backgroundImage = 'url(./images/command.png)';
+                
+                for(var i=0; i<カウンター.length; i++) {
+                    カウンター[i].style.backgroundImage = 'url(./images/counter.png)';
+                }
+                
+                次回戦();
+            }
+            
+            function 選ぶ(ユーザのコマンド) {
+                var コンピュータのコマンド = コンピュータ選ぶ();
+                
+                プレーヤー.style.backgroundImage = 'url(./images/' + コマンド配列[ユーザのコマンド] + '.png)';
+                コンピュータ.style.backgroundImage = 'url(./images/' + コマンド配列[コンピュータのコマンド] + '.png)';
+                
+                勝敗判定(ユーザのコマンド, コンピュータのコマンド);
+            }
+            
+            function コンピュータ選ぶ() {
+                var n = Math.random() * 3;
+                n = Math.floor(n);
+                console.log('相手:', n);
+                return n
+            }
+            
+            function 勝敗判定(ユーザのコマンド, コンピュータのコマンド) {
+                var n = ユーザのコマンド - コンピュータのコマンド;
+                if ( n == 0 ) {
+                    // あいこ
+                    console.log('あいこ', ユーザのコマンド, コンピュータのコマンド);
+                } else if ( n == -1 || n == 2) {
+                    // ユーザの勝ち
+                    勝ちカウント = 勝ちカウント + 1;
+                    カウンター[n回戦目-1].style.backgroundImage = 'url(./images/win.png)';
+                    console.log('ユーザの勝ち', ユーザのコマンド, コンピュータのコマンド, 勝ちカウント, "勝目");
+                    終了判定();
+                } else {
+                    // コンピュータの勝ち
+                    カウンター[n回戦目-1].style.backgroundImage = 'url(./images/lose.png)';
+                    console.log('コンピュータの勝ち', ユーザのコマンド, コンピュータのコマンド, n回戦目-勝ちカウント, "負目");
+                    終了判定();
+                }
+            }
+            
+            function 終了判定() {
+                console.log(n回戦目, '回戦目／', 勝ちカウント, '勝中');
+                if ( 2 <= n回戦目 ) {
+                    if ( 2 <= 勝ちカウント ) {
+                        setTimeout(function(){
+                            alert('プレイヤーの勝ち');
+                            初期化();     
+                        }, 100);
+                    }
+                    
+                    if ( 2 <= n回戦目-勝ちカウント ) {
+                        setTimeout(function(){
+                            alert('コンピュータの勝ち');
+                            初期化();
+                        }, 100);
+                    }
+                }
+                次回戦();
+            }
+            
+            function 次回戦() {
+                n回戦目 = n回戦目 + 1;
+            }
+            
+            初期化();
+            
         </script>
     </body>
 </html>
