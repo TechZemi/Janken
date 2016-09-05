@@ -210,6 +210,89 @@ function n個の黒丸を追加(n) {
 n個の黒丸を追加(5);
 ```
 
+
+さて、ただアラートで「グー」とか出すだけじゃつまらないし、何より次に進むのに
+いちいちOKボタンを押すのは面倒です。選んだ「手」を画像で表示してみましょう。
+
+まずは選ぶ前の空欄を以下の画像（/images/command.png）を使って表示します。
+
+![空欄](https://github.com/TechZemi/Janken/blob/master/images/command.png?raw=true)
+
+以下のHTMLをタグを追加しましょう。
+```
+<div id="プレーヤー" class="コマンド">
+    自分
+</div>
+```
+
+また、以下のスタイルを追加します。
+```
+.コマンド {
+    background-image: url('./images/command.png');
+    width: 200px;
+    height: 200px;
+    margin: 10px auto;
+}
+```
+
+divタグを置いて中に「自分」と書きました。普通にdivを置くだけだと、
+divは<ruby><rb>block</rb><rt>ブロック</rt></ruby>要素なので、横いっぱいに拡がっています。
+
+![styleなしのdiv](https://github.com/TechZemi/Janken/blob/master/README/div_no_style.png?raw=true)
+
+ここでは、divの大きさを画像の大きさ（横200px、縦200px）に合わせて、 
+画面の中央に表示されるように、左右の<ruby><rb>margin</rb><rt>マージン</rt></ruby>
+を<ruby><rb>auto</rb><rt>オート</rt></ruby>（自動）にしています。
+
+![styleありのdiv](https://github.com/TechZemi/Janken/blob/master/README/div_with_style.png?raw=true)
+
+これで「手」を選ぶまで、代わりに表示さている空欄ができました。
+
+では「手」を選んだ時、この画像を選んだ「手」で差し替えることにしましょう。
+差し替えをJavaScriptで実現するには、
+
+1. （差し替える）元の画像の表示されているタグをノードとして取得する
+2. 取得したノードのスタイルを書き換える
+
+という手順で行います。
+
+特定のHTMLタグのノードを取得するので、<ruby><rb>querySelector</rb><rt>クエリ セレクタ</rt></ruby>関数を使いましょう。
+
+```
+var プレーヤー = document.querySelector('???');
+```
+
+先ほど追加したdivタグのノードを取得し、プレーヤー変数に入れたいです。
+どんな風に探すことができるでしょうか。「？？？」に入る文字列を当てて下さい。
+
+
+次にノードを取得できたら、画像を差し替えます。差し替えるには以下のように
+divノードのスタイルを上書きしてあげます。
+
+```
+// グーの時はgu.png
+// チョキの時はch.png
+// パーの時はpa.png
+プレーヤー.style.backgroundImage = 'url(./images/gu.png)';
+```
+
+選ぶ関数の引数に合わせて自動でグーチョキパーを変えたいですね。
+どうすればいいでしょうか？
+
+「もし、◯◯だったら☓☓」を実現するには __if 文__ が使えます。
+以下の例の、「手」がグーや「手」がチョキの部分を自分なりに変えてみよう！
+
+**例**
+```
+if ( 「手」がグー ) {
+    プレーヤー.style.backgroundImage = 'url(./images/gu.png)';
+} else if （ 「手」がチョキ ）{
+    プレーヤー.style.backgroundImage = 'url(./images/ch.png)';
+} else {
+    プレーヤー.style.backgroundImage = 'url(./images/pa.png)';
+}
+```
+
 ---
 
 ### 今日覚えたい大人のIT用語「フィードバック」
