@@ -126,12 +126,12 @@ JavaScriptにて、特定のHTMLタグ（ノードと呼びます）を見つけ
         <p id="yellow">黃巻き貝</p>
         
         <script type="text/javascript">
-            // idがblueのノードを取ってきて、node変数に入れます
-            var node = document.querySelector('#blue');
+            // idがblueのノードを取ってきて、変数blueに入れます
+            var blue = document.querySelector('#blue');
             // 取ってきたノードの持つ文字列を「黒巻き貝」に変えます
-            node.textContent = '黒巻き貝';
+            blue.textContent = '黒巻き貝';
             // 取ってきたノードに付加されたスタイルの内、color属性を黒に変えます
-            node.style.color = '#000000';
+            blue.style.color = '#000000';
         </script>
     </body>
 </html>
@@ -158,17 +158,19 @@ JavaScriptにて、特定のHTMLタグ（ノードと呼びます）を見つけ
         <p id="yellow">黃巻き貝</p>
         
         <script type="text/javascript">
-            // idがblueのノードを取ってきて、node変数に入れます
-            var node = document.querySelector('#blue');
-            // 取ってきたノードがクリックされた時に呼ばれる関数を指定
-            node.addEventListener('click', すり替え);
+            // idがblueのノードを取ってきて、変数blueに入れます
+            var blue = document.querySelector('#blue');
+            // 取ってきたノードがクリックされた時に呼ばれる動作を指定
+            blue.addEventListener('click', function (e) {
+                すり替え();
+            });
             
-            // 取ってきたノードをすり替える関数
-            function すり替え(e) {
+            // 取ってきたノードの色をすり替える関数
+            function すり替え() {
                 // 取ってきたノードの持つ文字列を「黒巻き貝」に変えます
-                node.textContent = '黒巻き貝';
+                blue.textContent = '黒巻き貝';
                 // 取ってきたノードに付加されたスタイルの内、color属性を黒に変えます
-                node.style.color = '#000000';
+                blue.style.color = '#000000';
             }
         </script>
     </body>
@@ -176,6 +178,14 @@ JavaScriptにて、特定のHTMLタグ（ノードと呼びます）を見つけ
 ```
 
 これらのヒントから、グーチョキパーのボタンがクリックされた時に、
+
+```
+function 選ぶ() {
+
+}
+```
+
+が呼ばれるようにし、選ぶ関数が動作すると、
 
 ```
 alert('押された');
