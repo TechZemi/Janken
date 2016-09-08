@@ -12,7 +12,7 @@
 ![ブレークダウンツリー](https://github.com/TechZemi/Janken/blob/master/README/Breakdown.png?raw=true)
 
 ---
-## Step1: グーチョキパーを選べて、画面で表示できるようにする
+## Step1: グーチョキパーを選べて、画面に表示できるようにする
 
 **ゴール**
 
@@ -107,7 +107,8 @@ JavaScriptでは、文の最後に「;（セミコロン）」を付けるのが
 
 JavaScriptにて、特定のHTMLタグ（ノードと呼びます）を見つけるには、<ruby><rb>querySelector</rb><rt>クエリ セレクタ</rt></ruby>関数を使うのでした。
 
-**例**（新しくtest.htmlを作って、以下を貼り付けて確かめてみよう）
+**例**【コピペして試そう】
+※ 新しくtest.htmlを作って、以下を貼り付けて確かめてみよう
 ```
 <!DOCTYPE html>
 <html lang="ja">
@@ -139,7 +140,8 @@ JavaScriptにて、特定のHTMLタグ（ノードと呼びます）を見つけ
 
 続いて取ってきたノードに「クリックされた時」のイベントを付けるには、以下のようにします。
 
-**例**（test.htmlを改造して試してみよう）
+**例**
+※ test.htmlを改造して試してみよう
 ```
 <!DOCTYPE html>
 <html lang="ja">
@@ -219,7 +221,8 @@ alert('押された');
 
 以下は、引数を取る関数の「宣言」と「呼び出し」の例です。
 
-**例**（index.htmlのscriptタグに以下を貼り付けて試してみよう）
+**例**
+※ index.htmlのscriptタグに以下を貼り付けて試してみよう
 ```
 
 // 引数nを取る、「n個の黒丸を追加」関数の宣言
