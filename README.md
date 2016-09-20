@@ -361,6 +361,8 @@ if ( 「手」がグー ) {
 
 があったとします。この時、以下の２通りが考えられるでしょう。
 
+![信号](https://github.com/TechZemi/Janken/blob/master/README/shingouki.png?raw=true)
+
 **パターン1**
 
 ```
