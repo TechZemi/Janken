@@ -348,7 +348,7 @@ var プレーヤー = document.querySelector('???');
 ```
 if ( 「手」がグー ) {
     プレーヤー.style.backgroundImage = 'url(./images/gu.png)';
-} else if （ 「手」がチョキ ）{
+} else if ( 「手」がチョキ ) {
     プレーヤー.style.backgroundImage = 'url(./images/ch.png)';
 } else {
     プレーヤー.style.backgroundImage = 'url(./images/pa.png)';
