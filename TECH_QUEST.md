@@ -72,6 +72,81 @@ class属性はそのタグが何かのグループに所属する場合に使う
 <ファンクラブ会員 会員番号="＿＿＿＿＿＿" グループ="＿＿＿＿＿＿"> ナル </ファンクラブ会員>
 ```
 
+## CSSによる飾り付けの仕方①
+
+__idがplayer__のdivタグ__だけ__文字の色を赤にしたい。
+次の(1)〜(6)のどこにスタイルの指定を書けばいいか。
+
+```
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>Techクエスト</title>
+        <style>
+           #computer { 
+               (1)
+           }
+           
+           #player { 
+               (2)
+           }
+           
+           .command {
+               (3)
+           }
+
+           .player { 
+               (4)
+           }
+           
+           player { 
+               (5)
+           }
+           
+           (6)
+        </style>
+    </head>
+    <body>
+        <div id="player" class="command">プレーヤー</div>
+        <div id="computer" class="command">コンピュータ</div>
+    </body>
+</html>
+```
+
+## CSSによる飾り付けの仕方②
+
+idがplayerのdivタグの文字の色を赤にしたい。
+正しい書き方は次の(1)〜(6)のどれか。
+
+```
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>Techクエスト</title>
+        <style>
+        
+           #player { 
+               #ff0000 : color; // (1)
+               
+               color ; #ff0000: // (2)
+               
+               #ff0000 ; color: // (3)
+               
+               color : #ff0000; // (4)
+           }
+           
+        </style>
+    </head>
+    <body>
+        <div id="player">プレーヤー</div>
+        <div id="computer">コンピュータ</div>
+    </body>
+</html>
+```
+
+
 # 変数の宣言
 
 **No.1**
