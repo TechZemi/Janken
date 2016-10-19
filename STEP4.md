@@ -67,14 +67,61 @@ if-else文を使って
 
 ## Step4+1: 勝敗を見て分かるようにしよう
 
-今が何回戦で、ユーザが勝ったのか負けたのかを見て分かるようにカウンタを用意しよう。
-カウンタのために、以下の画像を用意しています。
+今が何回戦で、ユーザが勝ったのか負けたのかを見て分かるようにカウンターを用意しよう。
+カウンターのために、以下の画像を用意しています。
 
 | 画像が意味する内容 | 画像のパス          | 画像       |
 |:-------------------|:--------------------|------------|
 | まだ行われていない | /images/counter.png | ![counter](https://github.com/TechZemi/Janken/blob/master/images/counter.png?raw=true) |
 | ユーザの勝ち       | /images/win.png     | ![win](https://github.com/TechZemi/Janken/blob/master/images/win.png?raw=true) |
 | ユーザの負け       | /images/lose.png    | ![lose](https://github.com/TechZemi/Janken/blob/master/images/lose.png?raw=true) |
+
+### HTMLとCSSで初めの状態を作る
+
+まずはまだじゃんけんが行われていない状態、３つすべてが灰色な状態を実現しよう。
+カウンターのためのHTMLとCSSには、以下のコードがヒントです。
+
+以下では箇条書きを書くためのulタグとliタグを使っおうとしています。
+liタグの一つひとつに上の画像を背景として表示し、勝ち負けを分かるようにしましょう。
+
+これだけじゃもちろん表示されない。HTMLとCSSをどうやって関連付けるか考えよう。
+
+```
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+```
+
+```
+    display: inline-block;
+    background: url('./images/counter.png');
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+```
+
+### JavaScriptで勝敗が決まった時のカウンターの動きを決める
+
+まずはカウンタのHTMLをJavaScriptで使えるよう、物語の中に召喚しよう。
+
+HTMLタグ一つずつを召喚する場合は「document.querySelector('呼び出しの条件')」を
+使いました。ここでは、ulタグ以下の３つのliを、一度に召喚するための関数を使います。
+
+```
+var カウンター = document.querySelectorAll('liを呼び出す指定');
+```
+
+document.<ruby><rb>query</rb><rt>クエリ</rt><rb>SelectorAll</rb><rt>セレクタオール</rt></ruby>関数
+を使うと、呼び出しの条件に当てはまる全部の要素（HTMLタグ）が一度に取得できます。
+
+ここでは３つのliを取得できるように引数を指定しましょう。
+
+取得したliはカウンター変数に入れられます。
+この時、カウンター変数の中には、値が複数入る『配列』が入っています。
+
+
 
 
 
